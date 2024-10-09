@@ -1,0 +1,20 @@
+<header class="header">
+        <nav>
+            <ul class="nav-left">
+                <li>
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/logo_full_theme_alfa.svg') }}" alt="Home" class="home-logo">
+                    </a>
+                </li>
+                <li><a href="/#">О сервисе</a></li>
+                <li><a href="/susurity">Безопасность</a></li>
+                <li><a href="/admin"{{ ' hidden' if role != 'admin' else '' }}>Админка</a></li>
+                <!--  <li><a href="/internal/debug-tools/jwt">Для разработчиков</a></li> -->
+            </ul>
+            <ul class="nav-right">
+                <li><a href="#">{{ username+' ('+role+')' if username else 'Гость' }} </a></li> &nbsp; &nbsp;
+                <li><a href="/login">Вход</a></li>
+                <li><a href="/register">Регистрация</a></li>
+            </ul>
+        </nav>
+</header>

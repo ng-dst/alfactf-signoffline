@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>SignOffline</title>
+</head>
+<body>
+
+    {% include('header.html') %}
+
+    <main class="main-content">
+        <h1>SignOffline</h1>
+        <p>Пилот сервиса для простой и удобной подписи в режиме оффлайн. Подписывайте документы, заявки, договоры - с нашим сервисом всё нужное у вас под рукой!</p>
+        <img src="{{ url_for('static', filename='images/floating-head.svg') }}" alt="Sample Image" class="landing-image">
+
+        <br>
+
+        <h2>Самые современные технологии</h2>
+        <p>Мы идем в ногу со временем и используем новейшие технологии в наших сервисах. Например, алгоритмы 1977 года и наш самый современный веб-дизайн</p>
+        <img src="{{ url_for('static', filename='images/harold-working.jpg') }}" alt="Sample Image" class="landing-image">
+        <p style="font-size: 14px">90% людей не видят отличий между двумя картинками выше</p>
+
+        <br>
+
+        <h2>Фокус на безопасности</h2>
+        <p>Мы гарантируем безопасность и сохранность ваших данных</p>
+        <img src="{{ url_for('static', filename='images/harold-handsup.jpg') }}" alt="Sample Image" class="landing-image">
+
+        <br>
+        <br>
+    </main>
+
+    {% include('footer.html') %}
+
+</body>
+</html>

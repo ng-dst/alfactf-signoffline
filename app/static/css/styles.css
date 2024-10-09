@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.home-logo {
+    width: 140px;
+    height: auto;
+    vertical-align: middle;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+code {
+    display: block;
+    white-space: pre-wrap;
+    background: #f4f4f4;
+}
+
+.main-content {
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: center;
+    width: auto;
+}
+
+.nav-left, .nav-right {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-left li, .nav-right li {
+    margin-right: 20px;
+}
+
+.nav-left a, .nav-right a {
+    color: white;
+    text-decoration: none;
+}
+
+.landing-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    width: 200px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.footer {
+    background-color: darkgrey;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: page;
+    bottom: 0;
+    width: 100%;
+}
+
+.banner {
+    margin-bottom: 20px;
+    padding: 10px;
+    display: none;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px; /* Set a max width for the form */
+    margin: auto; /* Center the form */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+label {
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+input {
+    padding: 10px; /* Padding inside input fields */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 4px; /* Rounded corners */
+}
+
+@media (min-width: 600px) {
+    .form-container {
+        flex-direction: row; /* Change to row layout for larger screens */
+        flex-wrap: wrap; /* Allow wrapping to new lines */
+    }
+
+    .form-group {
+        width: 100%; /* Each form group takes full width */
+        margin-bottom: 10px; /* Space between form groups */
+    }
+
+    label {
+        text-align: left; /* Align labels to the left */
+        padding-right: 0; /* Remove right padding */
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.navigation {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+}
+
+.navigation a {
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.navigation a:hover {
+    background-color: #ddd;
+}

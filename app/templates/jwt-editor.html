@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Редактор JWT</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/11.1.0/jsrsasign-all-min.js"></script>
+    <style>
+        .main-content {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    {% include('header.html') %}
+
+    <div class="navigation">
+        <a href="#" id="verifyLink">Проверить JWT</a>
+        <a href="#" id="signLink"><!--подделать-->Создать свой JWT</a>
+    </div>
+
+    <div class="main-content">
+        <div class="form-container" id="verifyContainer">
+            <div class="banner" id="banner"></div>
+            <h2>Проверить подпись JWT токена</h2>
+            <div class="token-input">
+                <label for="token">JWT токен:</label>
+                <textarea id="token" rows="12" style="width: 150%;" placeholder="eyJGhB..."></textarea>
+            </div>
+            <div class="params-input">
+                <div class="param-field">
+                    <label for="e">e:</label>
+                    <input type="text" id="e" placeholder="65537" required/>
+                </div>
+                <div class="param-field">
+                    <label for="n">n:</label>
+                    <input type="text" id="n" style="width: 140%;" placeholder="..." required/>
+                </div>
+                <button class="btn" id="fetchParams">Подгрузить (n,e)</button>
+                <button class="btn red" id="verifyToken">Проверить</button>
+                <br>
+            </div>
+        </div>
+
+        <div class="form-container hidden" id="signContainer">
+            <h2>Подписать JWT токен</h2>
+            <div class="params-input">
+                <div class="param-field">
+                    <label for="signN">n:</label>
+                    <input type="text" id="signN" style="width: 140%;" placeholder="..." required/>
+                </div>
+                <div class="param-field">
+                    <label for="d">d:</label>
+                    <input type="text" id="d" style="width: 140%;" placeholder="..." required/>
+                </div>
+                <div class="token-input">
+                    <label for="payload">Тело токена:</label>
+                    <textarea id="payload" rows="12" style="width: 150%;" placeholder='{"key": "value"}'></textarea>
+                    <textarea id="result" rows="12" style="width: 150%;" placeholder="Результат" readonly></textarea>
+                </div>
+                <button class="btn red" id="signToken">Подписать</button>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script>
+        const verifyContainer = document.getElementById('verifyContainer');
+        const signContainer = document.getElementById('signContainer');
+
+        document.getElementById('verifyLink').onclick = function() {
+            verifyContainer.classList.remove('hidden');
+            signContainer.classList.add('hidden');
+        };
+
+        document.getElementById('signLink').onclick = function() {
+            signContainer.classList.remove('hidden');
+            verifyContainer.classList.add('hidden');
+        };
+    </script>
+
+    <script src="{{ url_for('static', filename='js/popup.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jwt-editor.js') }}"></script>
+
+</body>
+</html>

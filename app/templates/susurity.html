@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Безопасность</title>
+</head>
+<body>
+
+    {% include('header.html') %}
+
+    <main class="main-content">
+        <h1>Безопасность</h1>
+        <p>Мы используем передовые решения для безопасной работы с вашими данными!</p>
+        <img src="{{ url_for('static', filename='images/floating-head-ok.svg') }}" alt="Sample Image" class="landing-image">
+
+        <br>
+
+        <h2>Криптография</h2>
+        <p>Мы используем токены JWT с подписью RSA - де-факто многолетним стандартом электронной подписи. Для каждого пользователя мы создаем уникальную пару ключей, на которой строятся его токены.</p>
+
+        <br>
+
+        <h2>Надежные компоненты</h2>
+        <p>В основе любой криптосистемы лежит надежный ГПСЧ. Силами внутренней разработки мы реализовали самый стойкий генератор, но ребята из ДКБ почему-то ругаются и забрасывают нас замечаниями.</p>
+
+        <br>
+
+        <h2>Прозрачность</h2>
+        <p>Мы ценим честность и открытость превыше всего, и поэтому мы открыли исходный код бэкенда. В нашей криптографии нет бэкдоров - убедитесь в этом сами.</p>
+
+        <details>
+        <summary>Наша реализация генератора</summary>
+        <code>
+from gmpy2 import next_prime
+from random import SystemRandom
+
+size = 2048
+rounds = 16
+rand = SystemRandom()
+exp = rand.sample(range(32, size//2 - 1), rounds)
+
+def generate_rsa_key_pair():
+    def generate_int():
+        g = 2 ** (size//2 - 1)
+        for i in range(rounds):
+            g += 2**exp[i] * rand.randint(0, 1)
+        return g
+
+    def generate_prime():
+        return int(next_prime(generate_int()))
+
+    p = generate_prime()
+    q = generate_prime()
+    e = 65537
+
+    n = p*q
+    phi = (p-1)*(q-1)
+    d = pow(e, -1, phi)
+
+    return (n, e), (p, q, d)
+        </code>
+        </details>
+
+        <br>
+
+        <details>
+        <summary>Проверка токена</summary>
+        <code>
+payload = token.split('.')[1] + '=='
+payload = json.loads(base64.urlsafe_b64decode(payload.encode('utf-8')))
+username = str(payload.get('user'))
+
+user = db.users.find_one({'username': username})
+if not user:
+    return jsonify({'message': 'Пользователь не найден'}), 400
+
+payload = jwt.decode(token, user['public_key'], options={'require': ['exp', 'iat']}, algorithms=['RS256'])
+        </code>
+        </details>
+
+        <br>
+
+        <p>Помимо этого мы даем пользователям возможность самостоятельно проверить свои токены на специальной странице. (сейчас функционал закрыт, приносим извинения за неудобства)</p>
+
+        <br>
+        <br>
+        <br>
+        <br>
+    </main>
+
+    {% include('footer.html') %}
+
+</body>
+</html>
