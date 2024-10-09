@@ -21,7 +21,7 @@ ENV FLASK_RUN_PORT=3000
 ENV FLASK_ENV=production
 
 # Expose the port the app runs on
-EXPOSE 17071
+EXPOSE 80
 
 # Use a more efficient command to run the Flask application
 CMD ["gunicorn", "-b", "0.0.0.0:3000", "--worker-connections", "1000", "-k", "gevent", "app:create_app()"]
