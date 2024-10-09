@@ -1,0 +1,42 @@
+version: '3.8'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  web:
+    build: .
+    ports:
+      - "17071:17071"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/user_db
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '1024M'
+        reservations:
+          cpus: '0.1'
+          memory: '512M'
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    command: mongod --quiet --logpath /dev/null 
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

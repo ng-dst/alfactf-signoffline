@@ -1,0 +1,6 @@
+cryptography==42.0.6
+Flask==3.0.3
+gmpy2==2.1.5
+PyJWT==2.9.0
+pymongo==4.10.0
+Werkzeug==3.0.4
