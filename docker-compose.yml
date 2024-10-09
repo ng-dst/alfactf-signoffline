@@ -14,15 +14,6 @@ services:
     networks:
       - app-network
     restart: unless-stopped
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: '0.8'
-          memory: '1024M'
-        reservations:
-          cpus: '0.1'
-          memory: '512M'
 
   mongo:
     image: mongo:latest
@@ -39,7 +30,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "17071:17071"
+      - "17071:80"
     volumes:
       - ./nginx:/etc/nginx
     depends_on:
