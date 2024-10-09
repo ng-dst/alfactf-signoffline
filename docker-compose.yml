@@ -30,7 +30,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "17071:80"
+      - "80:17071"
     volumes:
       - ./nginx:/etc/nginx
     depends_on:
