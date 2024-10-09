@@ -1,3 +1,6 @@
+import gevent.monkey
+gevent.monkey.patch_all()
+
 import logging
 from flask import Flask
 from .routes import main
