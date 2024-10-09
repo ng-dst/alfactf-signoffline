@@ -170,6 +170,11 @@ def favicon():
     return send_file('static/images/favicon.png', mimetype='image/png')
 
 
+@main.route('/health')
+def health():
+    return '', 200
+
+
 @main.errorhandler(Exception)
 def handle_exception(e):
     app.logger.error(f'[!] An error occurred: {str(e)}')
