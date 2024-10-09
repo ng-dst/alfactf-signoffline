@@ -23,5 +23,8 @@ ENV FLASK_ENV=production
 # Expose the port the app runs on
 EXPOSE 80
 
+# Health check
+HEALTHCHECK --interval=120s --retries=3 CMD curl --fail http://127.0.0.1:3000 || exit 1
+
 # Use a more efficient command to run the Flask application
 CMD ["gunicorn", "-b", "0.0.0.0:3000", "--worker-connections", "1000", "-k", "gevent", "app:create_app()"]
