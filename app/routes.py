@@ -148,7 +148,7 @@ def register():
     return render_with_userdata('register.html')
 
 
-@main.route('/internal/debug-tools/jwt')
+@main.route('/jwt-editor')
 def jwt_editor():
     return render_with_userdata('jwt-editor.html')
 
