@@ -53,10 +53,12 @@ def generate_rsa_key_pair():
 
     p = generate_prime()
     q = generate_prime()
-    e = 65537
+    while p == q: q = generate_prime()
 
     n = p*q
     phi = (p-1)*(q-1)
+            
+    e = 65537
     d = pow(e, -1, phi)
 
     return (n, e), (p, q, d)
