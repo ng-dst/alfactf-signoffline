@@ -162,6 +162,7 @@ def admin(payload):
     if payload['role'] != 'admin':
         app.logger.info('  unauthorized access to /admin')
         return jsonify({'message': 'Страница доступна только администраторам'}), 403
+    app.logger.info(f'  user {payload["user"]} has SOLVED the task!')
     return render_with_userdata('admin.html')
 
 
