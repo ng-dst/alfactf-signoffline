@@ -8,8 +8,8 @@
                 </li>
                 <li><a href="/#">О сервисе</a></li>
                 <li><a href="/susurity">Безопасность</a></li>
+                <li><a href="/jwt-editor">Редактор JWT</a></li>
                 <li><a href="/admin"{{ ' hidden' if role != 'admin' else '' }}>Админка</a></li>
-                <!--  <li><a href="/internal/debug-tools/jwt">Для разработчиков</a></li> -->
             </ul>
             <ul class="nav-right">
                 <li><a href="#">{{ username+' ('+role+')' if username else 'Гость' }} </a></li> &nbsp; &nbsp;
