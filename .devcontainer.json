@@ -1,0 +1,9 @@
+{
+    "name": "SignOffline",
+    "build": {"dockerfile": "Dockerfile"},
+    "workspaceFolder": "./",
+    "forwardPorts": [80],
+    "postCreateCommand": ". start.sh",
+    "postStartCommand": "docker-compose start",
+    "runArgs": ["--volume=/var/lib/docker", "--privileged"]
+}
