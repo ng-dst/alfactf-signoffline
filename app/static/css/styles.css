@@ -1,18 +1,20 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 .header {
-    background-color: red;
+    background-color: #ff4747;
     color: white;
     text-align: center;
     padding: 20px;
 }
 
 .home-logo {
-    width: 140px;
+    width: 120px;
     height: auto;
     vertical-align: middle;
 }
@@ -20,20 +22,22 @@ body {
 header nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 code {
     display: block;
     white-space: pre-wrap;
-    background: #f4f4f4;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .main-content {
-    padding: 20px;
-    margin-left: 10%;
-    margin-right: 10%;
-    justify-content: center;
-    width: auto;
+    padding: 40px 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    max-width: 1100px;
 }
 
 .nav-left, .nav-right {
@@ -44,60 +48,86 @@ code {
 }
 
 .nav-left li, .nav-right li {
-    margin-right: 20px;
+    margin-right: 25px;
 }
 
 .nav-left a, .nav-right a {
     color: white;
     text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-left a:hover, .nav-right a:hover {
+    opacity: 0.8;
 }
 
 .landing-image {
     max-width: 100%;
     height: auto;
     margin-top: 20px;
+    border-radius: 8px;
 }
 
 input[type="text"],
 input[type="password"] {
     padding: 10px;
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
 }
 
 .btn {
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
     cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-align: center;
 }
 
 .red {
-    background-color: red;
+    background-color: #FF4747;
+    color: white;
+}
+
+.red:hover {
+    background-color: #FF4500;
+}
+
+.grey {
+    background-color: #A9A9A9;
     color: white;
 }
 
 .green {
-    background-color: green;
+    background-color: #28A745;
     color: white;
 }
 
+.green:hover {
+    background-color: #218838;
+}
+
 .footer {
-    background-color: darkgrey;
+    background-color: #333;
     color: white;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    position: page;
+    padding: 15px 0;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
 
 .banner {
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 15px;
     display: none;
-    width: 100%;
+    width: 95%;
     text-align: center;
     border-radius: 5px;
+    color: white;
 }
 
 .popup {
@@ -126,40 +156,39 @@ input[type="password"] {
 .form-container {
     display: flex;
     flex-direction: column;
-    max-width: 400px; /* Set a max width for the form */
-    margin: auto; /* Center the form */
+    max-width: 400px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
     display: flex;
-    flex-direction: column; /* Stack label above input */
-    margin-bottom: 15px; /* Space between form groups */
+    flex-direction: column;
+    margin-bottom: 15px;
 }
 
 label {
-    margin-bottom: 5px; /* Space between label and input */
+    margin-bottom: 5px;
+    font-weight: 500;
 }
 
 input {
-    padding: 10px; /* Padding inside input fields */
-    border: 1px solid #ccc; /* Border style */
-    border-radius: 4px; /* Rounded corners */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 @media (min-width: 600px) {
     .form-container {
-        flex-direction: row; /* Change to row layout for larger screens */
-        flex-wrap: wrap; /* Allow wrapping to new lines */
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .form-group {
-        width: 100%; /* Each form group takes full width */
-        margin-bottom: 10px; /* Space between form groups */
-    }
-
-    label {
-        text-align: left; /* Align labels to the left */
-        padding-right: 0; /* Remove right padding */
+        width: 100%;
     }
 }
 
@@ -172,6 +201,7 @@ input {
     background-color: #f4f4f4;
     padding: 15px;
     border-right: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 .navigation a {
@@ -181,6 +211,7 @@ input {
     color: #333;
     padding: 10px;
     border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .navigation a:hover {

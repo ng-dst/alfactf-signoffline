@@ -10,10 +10,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/11.1.0/jsrsasign-all-min.js"></script>
     <style>
         .main-content {
-            padding: 20px;
+            padding: 10px;
             flex-grow: 1;
             overflow-y: auto;
-            background-color: #fff;
+            background-color: #f9f9f9;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20%;
+            margin-right: 20%;
+            max-width: 800px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -23,7 +35,7 @@
 
     <div class="navigation">
         <a href="#" id="verifyLink">Проверить JWT</a>
-        <a href="#" id="signLink"><!--подделать-->Создать свой JWT</a>
+        <a href="#" id="signLink">Создать свой JWT</a>
     </div>
 
     <div class="main-content">
@@ -32,7 +44,7 @@
             <h2>Проверить подпись JWT токена</h2>
             <div class="token-input">
                 <label for="token">JWT токен:</label>
-                <textarea id="token" rows="12" style="width: 150%;" placeholder="eyJGhB..."></textarea>
+                <textarea id="token" rows="12" style="width: 90%;" placeholder="eyJGhB..."></textarea>
             </div>
             <div class="params-input">
                 <div class="param-field">
@@ -41,7 +53,7 @@
                 </div>
                 <div class="param-field">
                     <label for="n">n:</label>
-                    <input type="text" id="n" style="width: 140%;" placeholder="..." required/>
+                    <input type="text" id="n" style="width: 100%;" placeholder="..." required/>
                 </div>
                 <button class="btn" id="fetchParams">Подгрузить (n,e)</button>
                 <button class="btn red" id="verifyToken">Проверить</button>
@@ -54,16 +66,16 @@
             <div class="params-input">
                 <div class="param-field">
                     <label for="signN">n:</label>
-                    <input type="text" id="signN" style="width: 140%;" placeholder="..." required/>
+                    <input type="text" id="signN" style="width: 100%;" placeholder="Модуль n ..." required/>
                 </div>
                 <div class="param-field">
                     <label for="d">d:</label>
-                    <input type="text" id="d" style="width: 140%;" placeholder="..." required/>
+                    <input type="text" id="d" style="width: 100%;" placeholder="Приватный ключ d ..." required/>
                 </div>
                 <div class="token-input">
                     <label for="payload">Тело токена:</label>
-                    <textarea id="payload" rows="12" style="width: 150%;" placeholder='{"key": "value"}'></textarea>
-                    <textarea id="result" rows="12" style="width: 150%;" placeholder="Результат" readonly></textarea>
+                    <textarea id="payload" rows="8" style="width: 90%;" placeholder='{"key": "value"}'></textarea>
+                    <textarea id="result" rows="12" style="width: 90%;" placeholder="Результат" readonly></textarea>
                 </div>
                 <button class="btn red" id="signToken">Подписать</button>
                 <br>
@@ -71,9 +83,6 @@
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
     <br>
 
     <script>

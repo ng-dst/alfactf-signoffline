@@ -72,11 +72,11 @@ $(document).ready(function() {
     document.getElementById('fetchParams').addEventListener('click', () => {
         $.ajax({
             type: 'GET',
-            url: '/api/jwt/verify?publicKey=1',
+            url: '/api/jwt/publickey',
             success: function(response, textStatus, jqXHR) {
                 if (jqXHR.status === 200) {
-                    document.getElementById('e').value = response['jwt_public_key']['e'];
-                    document.getElementById('n').value = response['jwt_public_key']['n'];
+                    document.getElementById('e').value = response['e'];
+                    document.getElementById('n').value = response['n'];
                 }
             },
             error: function(jqXHR) {

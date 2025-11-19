@@ -86,7 +86,7 @@ def create_jwt_token(user):
     token = jwt.encode({
         'user': user['username'],
         'iat': datetime.datetime.now(),
-        'exp': datetime.datetime.now() + datetime.timedelta(hours=1),
+        'exp': datetime.datetime.now() + datetime.timedelta(hours=4),
         'role': user['role']
     }, user['private_key'], algorithm='RS256')
     return token

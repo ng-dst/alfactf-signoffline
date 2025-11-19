@@ -71,12 +71,7 @@ def api_register():
         return jsonify({'message': 'Пользователь уже существует'}), 409
 
     token = create_jwt_token(user_data)
-    resp = make_response(jsonify({
-                    'message': 'Вы успешно зарегистрировались!',
-                    'role': role,
-                    'username': username,
-                    'token': token
-                   }), 201)
+    resp = make_response(jsonify({'message': 'Вы успешно зарегистрировались!'}), 201)
     resp.set_cookie('token', token, samesite='Lax', max_age=3600)
     app.logger.info(f'  registered user {username}')
     return resp
@@ -94,8 +89,7 @@ def api_login():
     user = db.users.find_one({'username': username})
     if user and check_password_hash(user['password'], password):
         token = create_jwt_token(user)
-        resp = make_response(jsonify({'message': f'Вы вошли в систему как {username}',
-                                      'token': token}), 200)
+        resp = make_response(jsonify({'message': f'Вы вошли в систему как {username}'}), 200)
         resp.set_cookie('token', token, samesite='Lax', max_age=3600)
         app.logger.info(f'  user {username} logged in')
         return resp
@@ -109,19 +103,28 @@ def api_login():
 def api_verify_jwt(payload):
     username = payload['user']
     user = db.users.find_one({'username': username})
-    resp = {'username': username, 'role': str(payload['role'])}
-    if request.args.get('publicKey'):
-        app.logger.info(f'  user {username} accessed his public key')
-        resp['jwt_public_key'] = user['public_numbers']
+    return '', 200
+
+
+@main.route('/api/jwt/publickey', methods=['GET'])
+@token_required
+def api_public_key(payload):
+    username = payload['user']
+    user = db.users.find_one({'username': username})
+    app.logger.info(f'  user {username} accessed his public key')
+    resp = user['public_numbers']
     return jsonify(resp), 200
 
 
 # frontend pages
 
 def render_with_userdata(page, **kwargs):
+    @token_required
+    def get_userdata(payload):
+        return jsonify({'username': payload.get('user'), 'role': payload.get('role')}), 200
     username = None
     role = None
-    user, status = api_verify_jwt()
+    user, status = get_userdata()
     if status == 200:
         username = user.json['username']
         role = user.json['role']

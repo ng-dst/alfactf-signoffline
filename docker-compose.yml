@@ -17,8 +17,6 @@ services:
 
   mongo:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     volumes:
       - mongo-data:/data/db
       - ./mongo-init:/docker-entrypoint-initdb.d
@@ -30,7 +28,7 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:17071"
+      - "80:80"
     volumes:
       - ./nginx:/etc/nginx
     depends_on:
@@ -38,11 +36,12 @@ services:
     networks:
       - app-network
     healthcheck:
-      test: curl --fail http://localhost:17071/health || exit 1
+      test: curl --fail http://localhost:80/health || exit 1
       interval: 120s
       retries: 3
       start_period: 20s
       timeout: 10s
+    restart: unless-stopped
     
 
 volumes:
